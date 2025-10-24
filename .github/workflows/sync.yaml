@@ -21,12 +21,34 @@ jobs:
     #     run: aws s3 sync . s3://git-ac-b/test-git/ --include "*.css" --include "*.html" --include "*.js" --exclude "*"
     # #   run: aws s3 sync . s3://git-ac-b/test-git/ --include="*.css,*.html,*.js"  --exclude="*" --debug # Change this to your bucket name
 
-    - name: Deploy to S3
+    - name: Deploy to S3 with correct MIME Types
       run: |
-        echo "Syncing specific files to S3..."
+        echo "Syncing HTML files (text/html)..."
         aws s3 cp . s3://git-ac-b/test-git/ --recursive \
         --exclude "*" \
         --include "*.html" \
+        --content-type "text/html"
+
+        echo "Syncing CSS files (text/css)..."
+        aws s3 cp . s3://git-ac-b/test-git/ --recursive \
+        --exclude "*" \
         --include "*.css" \
-        --include "*.js"
+        --content-type "text/css"
+
+        echo "Syncing JS files (application/javascript)..."
+        aws s3 cp . s3://git-ac-b/test-git/ --recursive \
+        --exclude "*" \
+        --include "*.js" \
+        --content-type "application/javascript"
+        
         echo "Deployment complete."
+
+        # - name: Deploy to S3
+        #   run: |
+        #     echo "Syncing specific files to S3..."
+        #     aws s3 cp . s3://git-ac-b/test-git/ --recursive \
+        #     --exclude "*" \
+        #     --include "*.html" \
+        #     --include "*.css" \
+        #     --include "*.js"
+        #     echo "Deployment complete."
