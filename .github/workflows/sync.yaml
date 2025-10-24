@@ -10,9 +10,6 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Install AWS CLI
-      uses: unfor19/install-aws-cli-action@v1
-   
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -21,5 +18,5 @@ jobs:
         aws-region: ap-northeast-2  # Change this to your region of your bucket
    
     - name: Sync to S3
-    #   run: aws s3 sync . s3://git-ac-b/test-git/ --include="*.css,*.html,*.js"  --exclude="*" # Change this to your bucket name
-      run: aws s3 sync ./public/ s3://git-ac-b/test-git/ --include="*.css,*.html,*.js"  --exclude="*"
+      run: aws s3 sync . s3://git-ac-b/test-git/ --include="*.css,*.html,*.js"  --exclude="*" # Change this to your bucket name
+      
