@@ -24,7 +24,7 @@ jobs:
     - name: Deploy to S3
       run: |
         echo "Syncing specific files to S3..."
-        aws s3 cp . s3://icshin-web/s3-lab/ --recursive \
+        aws s3 cp . s3://git-ac-b/test-git/ --recursive \
         --exclude "*" \
         --include "*.html" \
         --include "*.css" \
